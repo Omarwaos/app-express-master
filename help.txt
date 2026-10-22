@@ -12,3 +12,4 @@
 12. Ejecutar archivo de semillas: npx knex seed:run
 13. Codificación:
     app.js > server.js > db.js > env.js > package.json
+14. Rutas
