@@ -8,7 +8,7 @@
     "migrate": "knex migrate:latest",
     "migrate:rollback": "knex migrate:rollback -all",
     "seed": "knex seed:run",
-    "db_reset": "knex migrate:rollback -all && knex migrate:latest && knex seed:run"
+    "db:reset": "knex migrate:rollback -all && knex migrate:latest && knex seed:run"
   },
 
   "dependencies": {
