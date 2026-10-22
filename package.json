@@ -1,4 +1,16 @@
 {
+
+  "main": "src/server.js",
+
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "migrate": "knex migrate:latest",
+    "migrate:rollback": "knex migrate:rollback -all",
+    "seed": "knex seed:run",
+    "db_reset": "knex migrate:rollback -all && knex migrate:latest && knex seed:run"
+  },
+
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
