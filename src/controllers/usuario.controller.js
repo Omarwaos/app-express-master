@@ -98,6 +98,7 @@ exports.remove = async (req, res) => {
     .where({id: req.params.id})
     .del()
 
+    
   if(!num) throw httpError(404, "Usuario no existe")
   res.json({message: 'Usuario eliminado'})
 }
