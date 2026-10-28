@@ -60,7 +60,30 @@ const [id] = await db("usuarios").insert({
 }
 
 
-exports.update = async (req, res) => {}
+exports.update = async (req, res) => {
+  //Validación
+  requireFields(req.body, ["idpersona", "nombre_usuario"])
+  //Deserialización
+  const {idpersona, nombre_usuario, clave_acceso, nivel_acceso, estado} = req.body
+
+  //Validación nivel acceso
+  checkNivel(nivel_acceso)
+  checkCredentials(req.body,{claveObligatoria:false})
+
+  //idperson FK ... los otros campos se evalúan en la siguientes líneas
+  const data = {idpersona, nombre_usuario}
+
+  //Actualizando el objeto "data" con el nivel_acceso que ingresa
+  if(nivel_acceso) {data.nivel_acceso = nivel_acceso}
+  if (estado !== undefined) {data.estado = estado}
+  if (clave_acceso) {data.clave_acceso = await bcrypt.hash(clave_acceso,10)}
+
+  //Por qué req.params? Porque el ID viene en la URL
+  await db("usuarios").where({id: req.params.id}).update(data)
+}
+if (!num) {throw httpError(404, 'Usuario no existe')}
+
+res.json({message: 'Usuario actualizado correctamente'})
 
 //Eliminar
 //Nota: Verifique las políticas de seguridad y reglas del negocio
