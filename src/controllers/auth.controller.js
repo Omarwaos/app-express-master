@@ -16,7 +16,7 @@ const DUMMY_HASH = bcrypt.hashSync('dummy-password',10)
 
 //exports.metodo = async (petición, respuesta) => {}
 exports.login = async (req,res) => {
-  requireFields(req.body, ('nombre_usuario', 'clave_acceso'))
+  requireFields(req.body, ['nombre_usuario', 'clave_acceso'])
 
   //Deserealización
   const {nombre_usuario, clave_acceso} = req.body

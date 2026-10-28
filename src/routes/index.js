@@ -1,6 +1,5 @@
 const router = require('express').Router()
 
-const { route } = require('../app')
 //JWT = limitar el uso de las rutas
 const {verifyToken, requireLevel} = require('../middlewares/auth')
 

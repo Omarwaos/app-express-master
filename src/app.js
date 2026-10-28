@@ -11,7 +11,7 @@ const routes = require('./routes')
 
 //Otras configuraciones
 const {apiLimiter} = require('./middlewares/rateLimit')
-const {NotFound, errorHandle} = require('./middlewares/errorHandler')
+const {notFound, errorHandle, errorHandler} = require('./middlewares/errorHandler')
 
 const app = express() //Inicializar Framework
 const isProd = process.env.NODE_ENV === 'production' //Evalúa el tipo de entorno
@@ -37,14 +37,14 @@ app.use(cookieParser()) //Leer cookie (configuración)
 app.use(express.static(path.join(__dirname,'..','public'))) // Ruta Frontend
 
 //Configuración de ruta
-app.use('api', apiLimiter, routes)
+app.use('/api', apiLimiter, routes)
 
 //Ruta raíz '/' (dev) localhost:3000, (prod) miapp.com
-app.get('/',(red,res)=> res.redirect('/index.html'))
+app.get('/',(req,res)=> res.redirect('/index.html'))
 
 //Manejamos rutas inexistentes
-app.use('/api',notFound)
-app.use(errorHandle)
+app.use('/api', notFound)
+app.use(errorHandler)
 
 //Exportamos este módulo
 module.exports = app

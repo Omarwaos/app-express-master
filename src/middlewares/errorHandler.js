@@ -27,6 +27,6 @@ exports.errorHandler = (err,req,res,next) => {
 
 
   //Error general de falla en la app
-  
+
   res.status(500).json ({message: 'Error interno del servidor'})
 }
