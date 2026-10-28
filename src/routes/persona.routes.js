@@ -5,10 +5,10 @@ const { route } = require('./auth.routes')
 //RECUERDA:
 //Las rutas requieren las funcionalidades en los controladores
 
-router.get('/')       //listar
-router.get('/:id')    //buscar
-router.post('/')      //registrar
-router.put('/:id')    //modificar
-router.delete('/:id') //elminar
+router.get('/', c.list)       //listar
+router.get('/:id',c.get)    //buscar
+router.post('/', c.create)      //registrar
+router.put('/:id', c.update)    //modificar
+router.delete('/:id', c.remove) //elminar
 
 module.exports = router
